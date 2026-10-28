@@ -8,7 +8,7 @@ The project analyses 994 student records across 5 departments, 8 courses, and 3 
 **Tools Used**
 - Microsoft Excel — data cleaning, validation, and calculated fields
 - Power BI Desktop — Power Query transformations, DAX calculations, interactive slicers, KPI cards, charts, and report pages
-- 
+  
 **Methodology**
 1. Reviewed the raw dataset for blanks, duplicate records, inconsistent category labels, data types, and invalid or inconsistent academic fields.
 2. Cleaned and standardised the data in Excel, including checking student/course categories and recalculating Final Score (%), Grade, and Academic Status so the derived fields followed one consistent rule.
