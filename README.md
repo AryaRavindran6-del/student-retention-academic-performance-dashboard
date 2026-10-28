@@ -6,10 +6,12 @@ An education analytics project using Excel for data cleaning and calculated fiel
 The project analyses 994 student records across 5 departments, 8 courses, and 3 years of study. The goal is to turn a raw student dataset into a cleaned analytical dataset and an interactive Power BI report that supports evidence-based review of academic outcomes.
 
 **Tools Used**
+
 - Microsoft Excel — data cleaning, validation, and calculated fields
 - Power BI Desktop — Power Query transformations, DAX calculations, interactive slicers, KPI cards, charts, and report pages
   
 **Methodology**
+
 1. Reviewed the raw dataset for blanks, duplicate records, inconsistent category labels, data types, and invalid or inconsistent academic fields.
 2. Cleaned and standardised the data in Excel, including checking student/course categories and recalculating Final Score (%), Grade, and Academic Status so the derived fields followed one consistent rule.
 3. Imported the cleaned workbook into Power BI and verified data types and category values in Power Query. Text fields such as Course were trimmed/cleaned where needed to avoid duplicate-looking categories.
@@ -19,6 +21,7 @@ The project analyses 994 student records across 5 departments, 8 courses, and 3 
 7. Validated displayed figures against the dataset and exported the report to PDF.
 
 **Excel Formulas Used**
+
 The cleaned workbook stores the assessment components in columns M:O, with the derived fields in columns P:R.
 1. Final Score (%) — P2
 Calculates the average of Assignment, Internal Exam, and Previous Exam scores only when all three values are numeric:
@@ -32,8 +35,11 @@ Classifies students using the project’s score thresholds:
 These formulas were filled down the relevant rows. The thresholds above describe the rules used in this project; they should not be treated as universal academic grading standards.
 
 **Power BI: DAX Calculations**
+
 The model uses the main table Students Data. Examples of the core DAX calculations are shown below; field names must match those in the workbook/model.
+
 **Calculated Columns**
+
 Retention Status — groups Needs Support and Repeat as Not Retained for dashboard comparisons:
 Retention Status =IF('Students Data'[Academic Status] = "Promoted","Retained","Not Retained")
 Attendance Band — groups attendance values into ranges for comparison:
@@ -44,6 +50,7 @@ At Risk Flag — flags students below 50 in both Internal Exam and Assignment sc
 At Risk Flag =IF('Students Data'[Internal Exam Score (%)] < 50 &&'Students Data'[Assignment Score (%)] < 50,"At Risk","Not Flagged")
 
 **Core Measures**
+
 Total Students =DISTINCTCOUNT('Students Data'[Student ID])
 Promoted Students =CALCULATE([Total Students],'Students Data'[Academic Status] = "Promoted")
 Not Promoted Students =CALCULATE([Total Students],'Students Data'[Academic Status] IN {"Needs Support", "Repeat"})
@@ -53,6 +60,7 @@ Average Final Score =AVERAGE('Students Data'[Final Score (%)])
 Additional measures calculate average Internal Exam, Assignment, Previous Exam, and Attendance values, and identify the number and proportion of at-risk students. Rates are formatted as percentages in Power BI.
 
 **Dashboard Contents**
+
 - Cards: Total Students, Not Promoted Students, Average Final Score, Promotion Rate
 - Interactive slicers: Department, State, Course, and Gender
 - Academic score comparison: Retained vs. Not Retained groups
@@ -63,6 +71,7 @@ Additional measures calculate average Internal Exam, Assignment, Previous Exam, 
 - Executive Narrative, Key Insights, and Recommended Solutions pages
 
 **Key Findings**
+
 In the current report, 890 of 994 students are promoted, while 104 are not promoted (93 Needs Support and 11 Repeat). The overall promotion rate is approximately 89.54%, and the average final score is approximately 64.83.
 
 The report shows a substantial difference in average Internal Exam scores between promoted and non-promoted groups. Course-level rates are used to identify areas for further review, not as proof of course quality or teaching effectiveness. The early-warning rule is intended to prioritise support and does not identify every student who may need help.
