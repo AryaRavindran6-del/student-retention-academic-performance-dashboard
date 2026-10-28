@@ -41,21 +41,33 @@ The model uses the main table Students Data. Examples of the core DAX calculatio
 **Calculated Columns**
 
 Retention Status — groups Needs Support and Repeat as Not Retained for dashboard comparisons:
+
 Retention Status =IF('Students Data'[Academic Status] = "Promoted","Retained","Not Retained")
+
 Attendance Band — groups attendance values into ranges for comparison:
+
 Attendance Band =SWITCH(TRUE(),'Students Data'[Attendance (%)] < 60, "Under 60%",'Students Data'[Attendance (%)] < 70, "60-69%",'Students Data'[Attendance (%)] < 85, "70-84%","85%+")
+
 Study Hours Band — groups students by daily study time:
+
 Study Hours Band =SWITCH(TRUE(),'Students Data'[Study Hours per Day] < 2, "Under 2h",'Students Data'[Study Hours per Day] < 3, "2-3h",'Students Data'[Study Hours per Day] < 4, "3-4h","4h+")
+
 At Risk Flag — flags students below 50 in both Internal Exam and Assignment scores:
+
 At Risk Flag =IF('Students Data'[Internal Exam Score (%)] < 50 &&'Students Data'[Assignment Score (%)] < 50,"At Risk","Not Flagged")
 
 **Core Measures**
 
 Total Students =DISTINCTCOUNT('Students Data'[Student ID])
+
 Promoted Students =CALCULATE([Total Students],'Students Data'[Academic Status] = "Promoted")
+
 Not Promoted Students =CALCULATE([Total Students],'Students Data'[Academic Status] IN {"Needs Support", "Repeat"})
+
 Promotion Rate =DIVIDE([Promoted Students], [Total Students], 0)
+
 Not Promoted Rate =DIVIDE([Not Promoted Students], [Total Students], 0)
+
 Average Final Score =AVERAGE('Students Data'[Final Score (%)])
 Additional measures calculate average Internal Exam, Assignment, Previous Exam, and Attendance values, and identify the number and proportion of at-risk students. Rates are formatted as percentages in Power BI.
 
