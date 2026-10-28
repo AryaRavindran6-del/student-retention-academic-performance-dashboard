@@ -2,10 +2,13 @@
 An education analytics project using Excel for data cleaning and calculated fields, and Power BI for interactive analysis of student retention, academic performance, course-wise risk, and student support recommendations.
 
 **Project Overview**
+
 The project analyses 994 student records across 5 departments, 8 courses, and 3 years of study. The goal is to turn a raw student dataset into a cleaned analytical dataset and an interactive Power BI report that supports evidence-based review of academic outcomes.
+
 **Tools Used**
 - Microsoft Excel — data cleaning, validation, and calculated fields
 - Power BI Desktop — Power Query transformations, DAX calculations, interactive slicers, KPI cards, charts, and report pages
+- 
 **Methodology**
 1. Reviewed the raw dataset for blanks, duplicate records, inconsistent category labels, data types, and invalid or inconsistent academic fields.
 2. Cleaned and standardised the data in Excel, including checking student/course categories and recalculating Final Score (%), Grade, and Academic Status so the derived fields followed one consistent rule.
@@ -75,5 +78,3 @@ The report shows a substantial difference in average Internal Exam scores betwee
 - Power BI File
 - Power BI Report exported as PDF
 - Project Documentation
-
-Suggested Repository Structure
